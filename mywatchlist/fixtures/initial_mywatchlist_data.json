@@ -1,0 +1,112 @@
+[
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 1,
+        "fields": {
+            "watched": "Done",
+            "title": "Top Gun: Maverick",
+            "rating": "5/5",
+            "release_date": "27th May 2022",
+            "review": "it's just good i guess"
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 2,
+        "fields": {
+            "watched": "Done",
+            "title": "Yuri on Ice",
+            "rating": "5/5",
+            "release_date": "6th October 2016",
+            "review": "ah yes katsudon"
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 3,
+        "fields": {
+            "watched": "Done",
+            "title": "Weathering With You",
+            "rating": "4/5",
+            "release_date": "21st August 2019",
+            "review": "good story and graphics but some part just doesn't make sense"
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 4,
+        "fields": {
+            "watched": "Done",
+            "title": "Sayap-sayap Patah",
+            "rating": "3/5",
+            "release_date": "18th August 2022",
+            "review": "a fresh romance-action-thriller film, but why does it has unappropriate scene? :("
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 5,
+        "fields": {
+            "watched": "Done",
+            "title": "The Shape of Water",
+            "rating": "5/5",
+            "release_date": "29th March 2018",
+            "review": "a romantic film, but it's all silence"
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 6,
+        "fields": {
+            "watched": "Done",
+            "title": "Last Night in Soho",
+            "rating": "5/5",
+            "release_date": "3rd November 2021",
+            "review": "it's thrilling :)"
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 7,
+        "fields": {
+            "watched": "Done",
+            "title": "Ford vs Ferrari",
+            "rating": "5/5",
+            "release_date": "15th November 2019",
+            "review": "it makes me want to own a Ford altough i can't resist to own a Ferrari"
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 8,
+        "fields": {
+            "watched": "Not Yet",
+            "title": "Mencuri Raden Saleh",
+            "rating": "Unknown",
+            "release_date": "25th August 2022",
+            "review": "none"
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 9,
+        "fields": {
+            "watched": "Done",
+            "title": "Pacific Rim",
+            "rating": "5/5",
+            "release_date": "11th July 2013",
+            "review": "robotic is good"
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 9,
+        "fields": {
+            "watched": "Done",
+            "title": "Encanto",
+            "rating": "5/5",
+            "release_date": "24th November 2021",
+            "review": "let's just not talk about bruno"
+        }
+    }
+]
