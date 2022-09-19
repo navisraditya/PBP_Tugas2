@@ -20,11 +20,11 @@
     </tr>
     {% for movie in list_watchlist %}
     <tr>
-      <td>{{movie.Watched}}</td>
-      <td>{{movie.Title}}</td>
+      <td>{{movie.watched}}</td>
+      <td>{{movie.title}}</td>
       <td>{{movie.rating}}</td>
-      <td>{{movie.Release}}</td>
-      <td>{{movie.Review}}</td>
+      <td>{{movie.release_date}}</td>
+      <td>{{movie.review}}</td>
   </tr>
 {% endfor %}
   </table>
