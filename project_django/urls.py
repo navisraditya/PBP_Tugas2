@@ -16,13 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from mywatchlist.views import show_json, show_xml
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('example_app.urls')),
     path('katalog/', include('katalog.urls')),
     path('mywatchlist/', include('mywatchlist.urls')),
-    path('xml/', show_xml, name='show_xml'),
-    path('json/', show_json, name='show_json'),
 ]
