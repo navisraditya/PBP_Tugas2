@@ -1,4 +1,6 @@
-[Tugas 3] Pengimplementasian Data Delivery Menggunakan Django
+[Tugas 3]
+
+**Pengimplementasian Data Delivery Menggunakan Django**
 
 Nama	:	Muhammad Navis Raditya Riayatsyah
 
@@ -9,10 +11,9 @@ Kelas	:	PBP-C
 
 *Link* untuk mengakses file HTML, JSON, dan XML untuk aplikasi mywatchlist:
 
-- https://pbp-tugas02.herokuapp.com/mywatchlist/
+- https://pbp-tugas02.herokuapp.com/mywatchlist/html/
 - https://pbp-tugas02.herokuapp.com/mywatchlist/xml/
 - https://pbp-tugas02.herokuapp.com/mywatchlist/json/
-
 
 Perbedaan antara JSON, XML, dan HTML
 
@@ -31,3 +32,9 @@ Caraku mengimplementasikan *checklist* pada soal
 - *Database* dipanggil dengan iterasi pada *file* mywatchlist.html.
 - Mempersiapkan pemanggilan *data* pada *database* dengan menambahkan fungsi pada views.py.
 - Menambahkan *path* untuk mengakses aplikasi mywatchlist pada urls.py yang ada di aplikasi project_django, serta menambahkan *path* terkait untuk mengakses data dalam bentuk JSON atau XML pada urls.py yang ada di aplikasi mywatchlist.
+
+*Link* dari aplikasi mywatchlist jika diakses menggunakan Postman
+
+- HTML:![1663679850896](image/README/1663679850896.png)
+- XML:![1663679922788](image/README/1663679922788.png)
+- JSON: ![1663679947398](image/README/1663679947398.png)
