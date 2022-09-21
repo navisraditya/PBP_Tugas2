@@ -18,7 +18,7 @@ def show_watchlist(request):
     }
     
     for moviesWatched in data_watchlist:
-        if movieWatched.watched == "Done":
+        if moviesWatched.watched == "Done":
            watchedCounter += 1
         else:
             notWatchedCounter += 1
