@@ -10,12 +10,6 @@ def show_watchlist(request):
     notWatchedCounter = 0
     afterMessage = "Wah, kamu masih sedikit menonton!"
     data_watchlist = watchlist.objects.all()
-    context = {
-        'list_watchlist': data_watchlist,
-        'nama': 'Muhammad Navis Raditya Riayatsyah',
-        'npm': '2106717291' ,
-        'watched' : afterMessage,
-    }
     
     for moviesWatched in data_watchlist:
         if moviesWatched.watched == "Done":
@@ -25,6 +19,13 @@ def show_watchlist(request):
         
         if watchedCounter >= notWatchedCounter:
             afterMessage = "Selamat, kamu sudah banyak menonton!"
+    
+    context = {
+        'list_watchlist': data_watchlist,
+        'nama': 'Muhammad Navis Raditya Riayatsyah',
+        'npm': '2106717291' ,
+        'watched' : afterMessage,
+    }
     return render(request, 'mywatchlist.html', context)
 
 def show_xml(request):
