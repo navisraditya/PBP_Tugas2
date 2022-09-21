@@ -6,12 +6,25 @@ from django.core import serializers
 
 # Create your views here.
 def show_watchlist(request):
+    watchedCounter = 0
+    notWatchedCounter = 0
+    afterMessage = "Wah, kamu masih sedikit menonton!"
     data_watchlist = watchlist.objects.all()
     context = {
         'list_watchlist': data_watchlist,
         'nama': 'Muhammad Navis Raditya Riayatsyah',
-        'npm': '2106717291'
+        'npm': '2106717291' ,
+        'watched' : afterMessage,
     }
+    
+    for moviesWatched in data_watchlist:
+        if movieWatched.watched == "Done":
+           watchedCounter += 1
+        else:
+            notWatchedCounter += 1
+        
+        if watchedCounter >= notWatchedCounter:
+            afterMessage = "Selamat, kamu sudah banyak menonton!"
     return render(request, 'mywatchlist.html', context)
 
 def show_xml(request):
