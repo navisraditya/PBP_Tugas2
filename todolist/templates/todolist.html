@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>
+    <h5>Nama: {{nama}}</h5>
+</p>
+
+<table>
+    <tr>
+    <th>User</th>
+    <th>Date</th>
+    <th>Title</th>t
+    <th>Description</th>
+    </tr>
+    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
+    {% for todo in data_todolist %}
+    <tr>
+        <th>{{last_login}}</th>
+        <th>{{last_login_datetime}}</th>
+        <th>{{todo.title}}</th>
+        <th>{{todo.description}}</th>
+    </tr>
+    {% endfor %}
+</table>
+
+<button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+
+{% endblock content %}

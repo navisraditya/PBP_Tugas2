@@ -8,7 +8,6 @@ NPM	:	2106717291
 
 Kelas	:	PBP-C
 
-
 *Link* untuk mengakses file HTML, JSON, dan XML untuk aplikasi mywatchlist:
 
 - https://pbp-tugas02.herokuapp.com/mywatchlist/html/
