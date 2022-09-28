@@ -8,14 +8,16 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth.decorators import login_required
 
+from .forms import AddList
+
 
 # Create your views here.
 @login_required(login_url='/todolist/login/')
 def show_todolist(request):
-    data_todolist = todolist.objects.all()
+    data_todolist = todolist.objects.filter(user = request.user)
     context = {
         'todolist' : data_todolist,
-        'last_login' : request.COOKIES['last_login'],
+        # 'last_login' : 
         'last_login_datetime' : request.COOKIES['last_login_datetime'],
     }
     return render(request, "todolist.html", context)
@@ -41,7 +43,6 @@ def login_user(request):
         if user is not None:
             login(request, user)
             response = HttpResponseRedirect(reverse('todolist:show_todolist'))
-            response.set_cookie('last_login', str(user.get_username))
             response.set_cookie('last_login_datetime', str(datetime.datetime.now()))
             return response
         else:
@@ -52,6 +53,15 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     response = HttpResponseRedirect(reverse('todolist:login'))
-    response.delete_cookie('last_login')
     response.delete_cookie('last_login_datetime')
     return response
+
+def add_list_todo(request):
+    if request.method == "POST":
+        form = AddList(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/todolist/")
+    else:
+        form = AddList()
+    return render(request, "addtask.html", {"form": form})

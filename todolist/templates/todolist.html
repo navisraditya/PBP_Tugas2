@@ -1,22 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h1>Tugas 4 Assignment PBP/PBD</h1>
+
 <p>
-    <h5>Nama: {{nama}}</h5>
+    <h3>Nama: {{user}}</h3>
+    Halo, jadi ini usaha Navis buat ngerjain Tugas 4 PBP. Ya walaupun bingungin tapi oke lah :D <br>
+    Sempet bingung kenapa tabel yang di bawah gk bisa update tapi udah fixed (harusnya (semoga))
 </p>
 
 <table>
     <tr>
     <th>User</th>
     <th>Date</th>
-    <th>Title</th>t
+    <th>Title</th>
     <th>Description</th>
     </tr>
     {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
-    {% for todo in data_todolist %}
+    {% for todo in todolist %}
     <tr>
-        <th>{{last_login}}</th>
-        <th>{{last_login_datetime}}</th>
+        <th>{{todo.user}}</th>
+        <th>{{todo.user}}</th>
         <th>{{todo.title}}</th>
         <th>{{todo.description}}</th>
     </tr>

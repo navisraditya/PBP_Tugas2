@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Add List To Do</title>
+{% endblock meta %}
+
+{% block content %}
+<div class = "addtodolist">
+
+    <h1>Add List To Do</h1>
+        <form method="POST">
+            <table>
+                {{form}}
+            </table>
+            
+            {% csrf_token %}
+            <button type="submit"> Tambahkan </button>
+        </form>
+</div>
+
+{% endblock content %}
