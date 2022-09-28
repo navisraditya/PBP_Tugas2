@@ -20,13 +20,12 @@
     {% for todo in todolist %}
     <tr>
         <th>{{todo.user}}</th>
-        <th>{{todo.user}}</th>
+        <th>{{todo.date}}</th>
         <th>{{todo.title}}</th>
         <th>{{todo.description}}</th>
     </tr>
     {% endfor %}
 </table>
-
 <button><a href="{% url 'todolist:logout' %}">Logout</a></button>
 
 {% endblock content %}
