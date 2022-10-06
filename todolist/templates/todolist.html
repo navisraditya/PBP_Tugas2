@@ -1,31 +1,68 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Tugas 4 Assignment PBP/PBD</h1>
+<div class="background">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+ </div>
 
-<p>
-    <h3>Nama: {{user}}</h3>
-    Halo, jadi ini usaha Navis buat ngerjain Tugas 4 PBP. Ya walaupun bingungin tapi oke lah :D <br>
-    Sempet bingung kenapa tabel yang di bawah gk bisa update tapi udah fixed (harusnya (semoga))
-</p>
 
-<table>
-    <tr>
-    <th>User</th>
-    <th>Date</th>
-    <th>Title</th>
-    <th>Description</th>
-    </tr>
-    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
-    {% for todo in todolist %}
-    <tr>
-        <th>{{todo.user}}</th>
-        <th>{{todo.date}}</th>
-        <th>{{todo.title}}</th>
-        <th>{{todo.description}}</th>
-    </tr>
-    {% endfor %}
-</table>
-<button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+ <div class="header">
+    <div class="header-user">Who's logged in: {{ user }}</div>
+    
+    <div class="header-button">
+        <button><a href="{% url 'todolist:logout' %}">Logout</a></button>  
+    </div>
+</div>
+
+<div class="body">
+    <div class="todolist-wrapper">
+
+        <h1>Tugas 4 Assignment PBP/PBD</h1>
+        <h2>TO DO LIST</h2>
+    
+        <div class="todolist-text">
+            <p>
+                <h3>Nama: {{user}}</h3>
+                Halo, jadi ini usaha {{ user }} buat ngerjain Tugas 4 PBP. Ya walaupun bingungin tapi oke lah :D <br>
+                Sempet bingung kenapa tabel yang di bawah gk bisa update tapi udah fixed (harusnya (semoga))
+            </p>
+        </div>
+
+        {% for todo in todolist %}
+        <div class="todolist-card" style="width: 18rem;">
+            <div class="todolist-card-body">
+              <h5 class="todolist-card-title">{{todo.title}}</h5>
+              <h6 class="todolist-card-date">{{todo.date}}</h6>
+              <p class="todolist-card-desc">{{todo.description}}</p>
+            </div>
+        </div>
+        {% endfor %}
+
+        <button><a href="{% url 'todolist:add_todolist' %}">Add Task</a></button> 
+    </div> 
+</div>
+
+<div class="footer">
+    
+</div>
 
 {% endblock content %}

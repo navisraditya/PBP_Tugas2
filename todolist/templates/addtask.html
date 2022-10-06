@@ -5,17 +5,51 @@
 {% endblock meta %}
 
 {% block content %}
-<div class = "addtodolist">
+<div class="background">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+ </div>
 
-    <h1>Add List To Do</h1>
-        <form method="POST">
-            <table>
-                {{form}}
-            </table>
-            
-            {% csrf_token %}
-            <button type="submit"> Tambahkan </button>
-        </form>
+
+ <div class="header">
+    <div class="header-user">Who's logged in: {{ user }}</div>
+    
+    <div class="header-button">
+        <button><a href="{% url 'todolist:logout' %}">Logout</a></button>  
+    </div>
 </div>
+<div class="body">
+    <div class = "addtodolist">
+
+        <h1>Add List To Do</h1>
+            <form method="POST">
+                <table>
+                    {{form}}
+                </table>
+                
+                {% csrf_token %}
+                <button type="submit"> Tambahkan </button>
+            </form>
+    </div>
+</div>
+
 
 {% endblock content %}
