@@ -3,7 +3,7 @@
         "model": "mywatchlist.watchlist",
         "pk": 1,
         "fields": {
-            "watched": "Done",
+            "watched": "aDone",
             "title": "Top Gun: Maverick",
             "rating": "5/5",
             "release_date": "27th May 2022",
@@ -14,7 +14,7 @@
         "model": "mywatchlist.watchlist",
         "pk": 2,
         "fields": {
-            "watched": "Done",
+            "watched": "aDone",
             "title": "Yuri on Ice",
             "rating": "5/5",
             "release_date": "6th October 2016",
@@ -25,7 +25,7 @@
         "model": "mywatchlist.watchlist",
         "pk": 3,
         "fields": {
-            "watched": "Done",
+            "watched": "aDone",
             "title": "Weathering With You",
             "rating": "4/5",
             "release_date": "21st August 2019",
@@ -36,7 +36,7 @@
         "model": "mywatchlist.watchlist",
         "pk": 4,
         "fields": {
-            "watched": "Done",
+            "watched": "aDone",
             "title": "Sayap-sayap Patah",
             "rating": "3/5",
             "release_date": "18th August 2022",
@@ -47,7 +47,7 @@
         "model": "mywatchlist.watchlist",
         "pk": 5,
         "fields": {
-            "watched": "Done",
+            "watched": "aDone",
             "title": "The Shape of Water",
             "rating": "5/5",
             "release_date": "29th March 2018",
@@ -58,7 +58,7 @@
         "model": "mywatchlist.watchlist",
         "pk": 6,
         "fields": {
-            "watched": "Done",
+            "watched": "aDone",
             "title": "Last Night in Soho",
             "rating": "5/5",
             "release_date": "3rd November 2021",
@@ -69,7 +69,7 @@
         "model": "mywatchlist.watchlist",
         "pk": 7,
         "fields": {
-            "watched": "Done",
+            "watched": "aDone",
             "title": "Ford vs Ferrari",
             "rating": "5/5",
             "release_date": "15th November 2019",
@@ -91,7 +91,7 @@
         "model": "mywatchlist.watchlist",
         "pk": 9,
         "fields": {
-            "watched": "Done",
+            "watched": "aDone",
             "title": "Pacific Rim",
             "rating": "5/5",
             "release_date": "11th July 2013",
@@ -102,7 +102,7 @@
         "model": "mywatchlist.watchlist",
         "pk": 9,
         "fields": {
-            "watched": "Done",
+            "watched": "aDone",
             "title": "Encanto",
             "rating": "5/5",
             "release_date": "24th November 2021",
