@@ -47,22 +47,56 @@
             </p>
         </div>
 
-        {% for todo in todolist %}
-        <div class="todolist-card" style="width: 18rem;">
+        <form id="form" onsubmit="return false;">
+            {% csrf_token %}
+            <label>Title</label>
+            <input type="text" name="title"></input>
+            <label>Description</label>
+            <input type="text" name="description"></input>
+            <button id="button" type="submit"  value="Submit"></button>
+          </form>
+                
+
+        <div class="todolist-card" style="width: 18rem;" id="card">
             <div class="todolist-card-body">
-              <h5 class="todolist-card-title">{{todo.title}}</h5>
-              <h6 class="todolist-card-date">{{todo.date}}</h6>
-              <p class="todolist-card-desc">{{todo.description}}</p>
+
             </div>
         </div>
-        {% endfor %}
 
-        <button><a href="{% url 'todolist:add_todolist' %}">Add Task</a></button> 
+        <!-- <button><a href="{% url 'todolist:add_todolist' %}">Add Task</a></button>  -->
     </div> 
 </div>
 
-<div class="footer">
-    
-</div>
 
+
+<script>
+    async function getTodolist(){
+        return fetch("{% url 'todolist:show_json' %}").then((res) => res.json)
+    }
+
+    async function refreshTodolist(){
+        document.getElementById("card").innerHTML=""
+        const todolist = await getTodolist()
+        let htmlString = ``
+        todolist.forEach((items) => {
+            htmlString += `<h5 class="todolist-card-title">{${todo.title}}</h5>
+              <h6 class="todolist-card-date">{${todo.date}}</h6>
+              <p class="todolist-card-desc">{${todo.description}}</p>`
+        })
+
+        document.getElementById("card").innerHTML=htmlString
+    }
+
+    function addTodolist(){
+        fetch("{% url 'todolist:add_todolist_task' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshTodolist)
+        return false
+    }
+
+    document.getElementById("button").onclick = addTodolist
+    refreshTodolist()
+
+</script>
 {% endblock content %}
