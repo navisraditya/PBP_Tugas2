@@ -1,6 +1,7 @@
 import datetime
 from todolist.models import todolist
-from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
+from todolist.forms import AddList
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
 from django.core import serializers
 from django.shortcuts import render, redirect
@@ -26,18 +27,6 @@ def show_todolist(request):
 def show_json(request):
     data_todolist = todolist.objects.filter(user = request.user)
     return HttpResponse(serializers.serialize("json", data_todolist))
-
-def add_todolist_task(request):
-    if request.method == "POST":
-        title = request.POST.get("title")
-        date = request.COOKIES['last_login_datetime']
-        description = request.POST.get("description")
-
-        new_task = todolist(title=title, date=date, description=description)
-        new_task.save()
-
-        return HttpResponse(b"CREATED", status=201)
-    return HttpResponseNotFound()
 
 def register(request):
     form = UserCreationForm()
@@ -82,3 +71,22 @@ def add_list_todo(request):
     else:
         form = AddList()
     return render(request, "addtask.html", {"form": form})
+
+    
+def add_todolist_ajax(request):
+    if request.user.is_authenticated:
+        form = AddList(request.POST)
+        data = {}
+
+        if request.method == 'POST' and form.is_valid():
+            title = form.cleaned_data['title']
+            description = form.cleaned_data['description']
+            new_task = todolist.objects.create(title=title, description=description, user=request.user, date=datetime.date.today)
+            data['title'] = title
+            data['description'] = description
+            data['user'] = request.user
+            data['date'] = datetime.date.today()
+            return JsonResponse(data)
+
+    else:
+        return redirect('todolist:login')
