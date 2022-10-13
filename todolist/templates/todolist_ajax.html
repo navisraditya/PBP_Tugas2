@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+{% endblock meta %}
+
+
+{% block content %}
+<div class="background">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+ </div>
+
+
+ <div class="header">
+    <div class="header-user">Who's logged in: {{ user }}</div>
+
+    <div class="header-button">
+        <button><a href="{% url 'todolist:logout' %}">Logout</a></button>  
+    </div>
+
+    <div class="header-button">
+    </div>
+</div>
+
+<header>
+</header>
+
+<div class="body">
+    <div class="todolist-wrapper">
+
+        <h1>Tugas 4 Assignment PBP/PBD</h1>
+        <h2>TO DO LIST</h2>
+        
+        <div class="todolist-text">
+            <p>
+                <h3>Nama: {{user}}</h3>
+                Halo, jadi ini usaha {{ user }} buat ngerjain Tugas 4 PBP. Ya walaupun bingungin tapi oke lah :D <br>
+                Sempet bingung kenapa tabel yang di bawah gk bisa update tapi udah fixed (harusnya (semoga))
+            </p>
+        </div>
+        
+        <div id="todolist-card"></div>
+        
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Add task</button>
+
+
+    </div> 
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    async function getTodolist(){
+        return fetch("{% url 'todolist:show_json' %}").then((res) => res.json)
+    }
+
+    async function refreshTodolist(){
+        document.getElementById("todolist-card").innerHTML=""
+        const todolist = await getTodolist()
+        let htmlString = ``
+        todolist.forEach(item => {
+            htmlString += `\n
+            <div class="todolist-card" style="width: 18rem;>" 
+            <div class="todolist-card-body">
+            <h5 class="todolist-card-title">${item.fields.title}</h5>
+            <span class="todolist-card-status">Status: ${item.fields.is_finished ? "Selesai": "Belum Selesai"}</span>
+            <h6 class="todolist-card-date">${item.fields.date}</h6>
+            <p class="todolist-card-desc">${item.fields.description}</p>
+            <div class = "buttonwrapper">
+                <form method="POST" action="{% url 'todolist:change_status' %}"> 
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value=${item.fields.id}>
+                    <td><button type="submit" class="btn btn-warning">Change Status</button></td>
+                    </form>
+                <form method="POST" action="{% url 'todolist:delete_task' %}"> 
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value=${item.fields.id}>
+                    <td><button type="submit" class="btn btn-danger">Delete</button></td>
+                    </form>
+                    
+                </div>
+            </div>
+            </div>`
+        });
+        document.getElementById("todolist-card").innerHTML = htmlString
+    }
+
+    async function addTask() {
+    fetch("{% url 'todolist:add_task_ajax' %}", {
+          method: "POST",
+          body: new FormData(document.querySelector('#formtask'))
+      }).then(refreshTodolist)
+    return false
+  }
+
+  document.getElementById("addtaskbutton").onclick = addTask
+
+  refreshTodolist()
+</script>
+{% endblock content %}

@@ -51,9 +51,24 @@
         <div class="todolist-card" style="width: 18rem;">
             <div class="todolist-card-body">
               <h5 class="todolist-card-title">{{todo.title}}</h5>
+              <h5 class="todolist-card-status">Is Finished? {{todo.is_finished}}</h5>
               <h6 class="todolist-card-date">{{todo.date}}</h6>
               <p class="todolist-card-desc">{{todo.description}}</p>
             </div>
+
+            <div class = "buttonwrapper">
+                <form method="POST" action="{% url 'todolist:change_status' %}"> 
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value={{todo.id}}>
+                    <td><button type="submit" class="btn btn-warning">Change Status</button></td>
+                    </form>
+                <form method="POST" action="{% url 'todolist:delete_task' %}"> 
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value={{todo.id}}>
+                    <td><button type="submit" class="btn btn-danger">Delete</button></td>
+                    </form>
+                    
+                </div>
         </div>
         {% endfor %}
 
