@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block meta %}
+{% endblock meta %}
+
+
 {% block content %}
 <div class="background">
     <span></span>
@@ -27,13 +31,12 @@
 
  <div class="header">
     <div class="header-user">Who's logged in: {{ user }}</div>
-    
+
     <div class="header-button">
         <button><a href="{% url 'todolist:logout' %}">Logout</a></button>  
     </div>
 
     <div class="header-button">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Add Task</button> 
     </div>
 </div>
 
@@ -42,7 +45,7 @@
 
         <h1>Tugas 4 Assignment PBP/PBD</h1>
         <h2>TO DO LIST</h2>
-    
+        
         <div class="todolist-text">
             <p>
                 <h3>Nama: {{user}}</h3>
@@ -50,39 +53,44 @@
                 Sempet bingung kenapa tabel yang di bawah gk bisa update tapi udah fixed (harusnya (semoga))
             </p>
         </div>
-
+        
         <div id="todolist-card"></div>
+        
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Add task</button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Add Task</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form id="formtask">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Title:</label>
-                      <input type="text" class="form-control" id="field_title" name="title">
-                    </div>
-                    <div class="mb-3">
-                      <label for="message-text" class="col-form-label">Description:</label>
-                      <textarea class="form-control" id="field_desc" name="description"></textarea>
-                    </div>
-                  </form>
-                </div>
-                  <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" id="addtaskbutton" data-bs-dismiss="modal">Confirm</button>
-                </div>
-              </div>
-            </div>
-          </div>
     </div> 
 </div>
+
+
+<!-- Modal -->
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
@@ -99,9 +107,23 @@
             <div class="todolist-card" style="width: 18rem;>" 
             <div class="todolist-card-body">
             <h5 class="todolist-card-title">${item.fields.title}</h5>
-            <h5 class="todolist-card-status">STATUS: ${item.fields.is_finished}</h5>
+            <span class="todolist-card-status">Status: ${item.fields.is_finished ? "Selesai": "Belum Selesai"}</span>
             <h6 class="todolist-card-date">${item.fields.date}</h6>
             <p class="todolist-card-desc">${item.fields.description}</p>
+
+            <div class = "buttonwrapper">
+                <form method="POST" action="{% url 'todolist:change_status' %}"> 
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value=${item.fields.id}>
+                    <td><button type="submit" class="btn btn-warning">Change Status</button></td>
+                    </form>
+                <form method="POST" action="{% url 'todolist:delete_task' %}"> 
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value=${item.fields.id}>
+                    <td><button type="submit" class="btn btn-danger">Delete</button></td>
+                    </form>
+                    
+                </div>
             </div>
             </div>`
         });

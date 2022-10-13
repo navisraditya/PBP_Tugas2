@@ -194,22 +194,26 @@ body{
     margin: 10px;
     margin-bottom: 20px;
     border: 2px solid blueviolet;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255);
+}
+
+.todolist-card-status {
+    color: black;
 }
 
 .todolist-card-title{
     font-size: 24px;
-    color: red;
+    color: black;
 }
 
 .todolist-card-date{
     font-size: 14px;
-    color: blue;
+    color: black;
     padding-bottom: 5px;
 }
 
 .todolist-card-desc{
-    color: blue;
+    color: black;
     border-top: 1px solid red;
 }
 
@@ -304,7 +308,9 @@ body{
     width: 100%;
 }
 
-
+.buttonwrapper{
+    margin: 50px;
+}
 
 
 
