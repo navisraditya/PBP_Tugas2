@@ -60,12 +60,12 @@
                 <form method="POST" action="{% url 'todolist:change_status' %}"> 
                     {% csrf_token %}
                     <input type="hidden" name="id" value={{todo.id}}>
-                    <td><button type="submit" class="btn btn-warning">Change Status</button></td>
+                    <td><button type="submit" class="btn-option">Change Status</button></td>
                     </form>
                 <form method="POST" action="{% url 'todolist:delete_task' %}"> 
                     {% csrf_token %}
                     <input type="hidden" name="id" value={{todo.id}}>
-                    <td><button type="submit" class="btn btn-danger">Delete</button></td>
+                    <td><button type="submit" class="btn-option">Delete</button></td>
                     </form>
                     
                 </div>

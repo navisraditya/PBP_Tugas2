@@ -312,7 +312,20 @@ body{
     margin: 50px;
 }
 
-
+.btn-option{
+    display: block;
+    margin-left: auto;
+    margin-bottom: 10px;
+    border: none;
+    outline: none;
+    background: #ff652f;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
 
 

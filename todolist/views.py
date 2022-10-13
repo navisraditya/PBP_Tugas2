@@ -33,7 +33,7 @@ def add_task_ajax(request):
         title = request.POST.get("title")
         description = request.POST.get("description")
 
-        new_todolist = todolist(title=title, description=description, user=request.user, date=datetime.date.today)
+        new_todolist = todolist(title=title, description=description, user=request.user)
         new_todolist.save()
 
         return HttpResponse(b"CREATED", status=201)
