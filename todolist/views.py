@@ -1,7 +1,6 @@
 import datetime
 from todolist.models import todolist
-from todolist.forms import AddList
-from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
+from django.http import HttpResponseNotFound, HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.core import serializers
 from django.shortcuts import render, redirect
@@ -27,6 +26,22 @@ def show_todolist(request):
 def show_json(request):
     data_todolist = todolist.objects.filter(user = request.user)
     return HttpResponse(serializers.serialize("json", data_todolist))
+
+@login_required(login_url='/todolist/login/')
+def add_task_ajax(request):
+    if request.method == 'POST':
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+
+        new_todolist = todolist(title=title, description=description, user=request.user, date=datetime.date.today)
+        new_todolist.save()
+
+        return HttpResponse(b"CREATED", status=201)
+    return HttpResponseNotFound()
+
+@login_required(login_url='/todolist/login/')
+def views_ajax(request):
+    return render(request, "todolist_ajax.html")
 
 def register(request):
     form = UserCreationForm()
@@ -72,21 +87,17 @@ def add_list_todo(request):
         form = AddList()
     return render(request, "addtask.html", {"form": form})
 
-    
-def add_todolist_ajax(request):
-    if request.user.is_authenticated:
-        form = AddList(request.POST)
-        data = {}
+@login_required(login_url='/todolist/login/')
+def delete_task(request):
+    if request.method == "POST":
+        todo = todolist.objects.get(id = request.POST["id"])
+        todo.delete()
+    return redirect('todolist:show_todolist')
 
-        if request.method == 'POST' and form.is_valid():
-            title = form.cleaned_data['title']
-            description = form.cleaned_data['description']
-            new_task = todolist.objects.create(title=title, description=description, user=request.user, date=datetime.date.today)
-            data['title'] = title
-            data['description'] = description
-            data['user'] = request.user
-            data['date'] = datetime.date.today()
-            return JsonResponse(data)
-
-    else:
-        return redirect('todolist:login')
+@login_required(login_url='/todolist/login/')
+def change_status(request):
+    if request.method == "POST":
+        todo = todolist.objects.get(id = request.POST["id"])
+        todo.is_finished = not todo.is_finished
+        todo.save()
+    return redirect('todolist:show_todolist')
